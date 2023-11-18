@@ -1,4 +1,4 @@
-package org.kit.utils;
+package org.kit.task.utils;
 
 import java.util.List;
 

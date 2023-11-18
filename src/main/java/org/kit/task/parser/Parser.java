@@ -1,6 +1,6 @@
-package org.kit.parser;
+package org.kit.task.parser;
 
-import org.kit.utils.Utils;
+import org.kit.task.utils.Utils;
 
 import java.util.*;
 

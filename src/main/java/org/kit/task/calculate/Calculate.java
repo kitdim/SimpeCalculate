@@ -1,4 +1,4 @@
-package org.kit.calculate;
+package org.kit.task.calculate;
 
 import java.util.List;
 import java.util.Map;
