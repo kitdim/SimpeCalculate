@@ -1,9 +1,17 @@
+@import org.kit.task.dto.BuildCalculatePage
+@import org.kit.task.dto.CalculatePage
+@import org.kit.task.util.NamedRoutes
+
+@param BuildCalculatePage pageBuild
+@param CalculatePage page
+
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Обратная связь</title>
+    <title>Simple Calculate</title>
     <style>
         body {
           width: 100vw;
@@ -69,13 +77,30 @@
     </style>
 </head>
 <body>
-<form class="block-center form">
+@if(pageBuild != null)
+    <div class="mb-3">
+        <ul>
+            @for(var validator : pageBuild.getErrors().values())
+                @for(var error : validator)
+                    <li>${error.getMessage()}</li>
+                @endfor
+            @endfor
+        </ul>
+    </div>
+@endif
+<form class="block-center form" action="${NamedRoutes.main()}" method="post">
     <h1>Calculation</h1>
     <div class="form-input mb-2">
-        <label for="message" class="sr-only">Your maths example.</label>
-        <textarea id="message" placeholder="5+5"></textarea>
+        <input type="text" id="input" name="input" placeholder="Ваше уравнение">
     </div>
-    <button class="btn btn-green">Send</button>
+    <div class="form-input mb-2">
+        @if(page != null)
+            <p>Result: ${page.getResult()}</p>
+        @else
+            <p>Result: 0</p>
+        @endif
+    </div>
+    <input class="btn btn-green" type="submit" value="Enter"/>
 </form>
 </body>
 </html>

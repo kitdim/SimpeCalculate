@@ -1,18 +1,19 @@
 package org.kit.task;
 
 import io.javalin.Javalin;
+import org.kit.task.controller.MainController;
+import org.kit.task.util.NamedRoutes;
 
 public class Main {
+    private static final int PORT = 7070;
     public static void main(String[] args) {
-//        String input = new Scanner(System.in)
-//                .next()
-//                .trim();
-//        Map<String, List<String>> data = Parser.parse(input);
-//        Calculate.getResult(data);
-        var app = Javalin.create(config -> {
-            config.plugins.enableDevLogging();
-        });
-        app.get("/", ctx -> ctx.render("index.jte"));
-        app.start(7070);
+        run();
+    }
+    private static void run() {
+        var app = Javalin.create(config -> config.plugins.enableDevLogging());
+        app.get(NamedRoutes.main(), MainController::index);
+        app.post(NamedRoutes.main(), MainController::show);
+        app.error(404, MainController::error);
+        app.start(PORT);
     }
 }
