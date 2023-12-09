@@ -3,7 +3,7 @@ package org.kit.task;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.kit.task.parser.Parser;
-import org.kit.task.service.Calculate;
+import org.kit.task.service.ResultMachine;
 
 import java.util.List;
 
@@ -20,16 +20,16 @@ public class CalculateTest {
     @Test
     void wasGetResult() {
         var item = Parser.evaluateExpression(data.get(0));
-        var actual = Calculate.calc(item);
+        var actual = ResultMachine.calc(item);
         assertThat(actual).isEqualTo(0);
         item = Parser.evaluateExpression(data.get(1));
-        actual = Calculate.calc(item);
+        actual = ResultMachine.calc(item);
         assertThat(actual).isEqualTo(-1);
         item = Parser.evaluateExpression(data.get(2));
-        actual = Calculate.calc(item);
+        actual = ResultMachine.calc(item);
         assertThat(actual).isEqualTo(6);
         item = Parser.evaluateExpression(data.get(3));
-        actual = Calculate.calc(item);
+        actual = ResultMachine.calc(item);
         assertThat(actual).isEqualTo(-1);
     }
 }
