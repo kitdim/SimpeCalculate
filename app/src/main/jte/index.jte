@@ -59,20 +59,8 @@
           left: 50%;
           transform: translate(-50%, -50%);
         }
-        .mb-1 {
-          margin-bottom: 1em;
-        }
         .mb-2 {
           margin-bottom: 1.5em;
-        }
-        .sr-only {
-          position: absolute;
-          width: 1px;
-          height: 1px;
-          padding: 0;
-          overflow: hidden;
-          white-space: nowrap;
-          border: 0;
         }
     </style>
 </head>
@@ -91,7 +79,11 @@
 <form class="block-center form" action="${NamedRoutes.main()}" method="post">
     <h1>Calculation</h1>
     <div class="form-input mb-2">
-        <input type="text" id="input" name="input" placeholder="Ваше уравнение">
+        @if(pageBuild == null)
+            <input type="text" id="input" name="input" placeholder="...">
+        @else
+            <input type="text" id="input" name="input" placeholder="..." value="${pageBuild.getInput()}">
+        @endif
     </div>
     <div class="form-input mb-2">
         @if(page != null)

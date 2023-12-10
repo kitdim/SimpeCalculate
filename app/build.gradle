@@ -1,5 +1,8 @@
 plugins {
     id 'application'
+    id "com.github.johnrengelman.shadow" version "8.1.1"
+    id 'checkstyle'
+    id 'jacoco'
 }
 
 group = 'org.kit'
@@ -32,4 +35,11 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
 }
