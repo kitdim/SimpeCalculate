@@ -1,6 +1,10 @@
 package org.kit.task.parser;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.List;
+import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,7 +31,9 @@ public class Parser {
                 switch (currentToken) {
                     case "(" -> deque.push(currentToken);
                     case ")" -> {
-                        while (!deque.peek().equals("(")) result.add(deque.pop());
+                        while (!deque.peek().equals("(")) {
+                            result.add(deque.pop());
+                        }
                         deque.pop();
                         if (!deque.isEmpty()) {
                             result.add(deque.pop());

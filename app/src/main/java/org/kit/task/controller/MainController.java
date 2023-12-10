@@ -11,14 +11,16 @@ import org.kit.task.util.Sanitiser;
 import java.util.Collections;
 
 public class MainController {
+    private static final String ERROR_BRACKETS = "Incorrect brackets.";
+    public static final String ERROR_LETTERS = "Incorrect equation.";
     public static void index(Context ctx) {
         ctx.render("index.jte");
     }
     public static void show(Context ctx) {
         try {
             var input = ctx.formParamAsClass("input", String.class)
-                    .check(Sanitiser::checkForBrackets, "Неверно указаны скобки")
-                    .check(Sanitiser::checkForLetters, "Неверно составлено уравнение")
+                    .check(Sanitiser::checkForBrackets, ERROR_BRACKETS)
+                    .check(Sanitiser::checkForLetters, ERROR_LETTERS)
                     .get();
             var expression = Parser.evaluateExpression(input);
             var result = ResultMachine.calc(expression);
